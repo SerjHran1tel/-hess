@@ -1,3 +1,4 @@
+import sys, pygame
 from board import *
 
 # Текущий холст
@@ -91,9 +92,10 @@ def start():
                         mode = 'mode_4'
                         continue
 
-                # Режим 6: игра завершена
-                if mode == 'mode_6':
-                    exit()
+                # Режим 5: игра завершена
+                if mode == 'mode_5':
+                    pygame.quit()
+                    sys.exit()
 
         # Режим 4: применение хода и смена игрока
         if mode == 'mode_4':
@@ -107,11 +109,11 @@ def start():
             game_over = check_game_over(OPPOSITE_SIDE[current_player])
             if game_over == MAT:
                 msg = f'Победил {"Белый" if current_player == WHITE else "Черный"}!'
-                mode = 'mode_6'
+                mode = 'mode_5'
                 continue
             if game_over == PAT:
                 msg = 'Ничья'
-                mode = 'mode_6'
+                mode = 'mode_5'
                 continue
 
             current_player = OPPOSITE_SIDE[current_player]
